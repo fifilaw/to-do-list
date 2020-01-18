@@ -5,45 +5,38 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
+let items =[];
+
 app.set("view engine", "ejs");
 
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.get("/", function(req, res){
 
-  var today = new Date();
-  var currentDay = today.getDay();
-  var day ="";
+  let today = new Date();
+  let currentDay = today.getDay();
 
-  if(currentDay === 1){
-    day ="Monday";
 
-  } else if(currentDay === 2){
-    day ="Tuesday";
+  let options = {
+    weekday: "long",
+    month: "long",
+    day: "numeric"
 
-  }else if(currentDay === 3){
-    day ="Wednesday";
+}
+  let day = today.toLocaleDateString("en-US", options);
 
-  }else if(currentDay === 4){
-    day ="Thursday";
+  res.render("list", {kindOfDay: day , newItem: items});
 
-  }else if(currentDay === 5){
-    day ="Friday";
-
-  }else if(currentDay === 6){
-    day ="Saturday";
-
-  }else if(currentDay === 0){
-    day ="Sunday";
-  };
-
-  res.render("list", {kindOfDay: day });
 
 });
 
 app.post("/", function(req, res){
+  let item = req.body.toDoList;
 
-  console.log(req.body.toDoList);
+  items.push(item);
+
+  res.redirect("/");
+
 });
 
 app.listen(3000, function(){
