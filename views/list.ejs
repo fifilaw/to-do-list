@@ -1,21 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <h1>It's <%= kindOfDay %>!</h1>
+
+<head>
+  <meta charset="utf-8">
+  <title>To-do List</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <div class="box" id="heading">
+    <h1><%= kindOfDay %></h1>
+  </div>
+
+  <div class="box">
     <form class="" action="/" method="post">
 
-    <%  for (var i = 0; i<newItem.length ;i++){ %>
+      <%  for (var i = 0; i<newItem.length ;i++){ %>
+      <div class="item">
+        <input type="checkbox" name="" value="">
+        <p> <%= newItem[i] %> </p>
+</div>
+      <%  } %>
 
-      <li>  <%= newItem[i] %> </li>
+      <input type="text" name="toDoList" class="" placeholder="What to do...">
+      <button type="submit" name="button">+</button>
 
-    <%  } %>
 
-      <input type="text" name="toDoList" placeholder="What to do">
-      <button type="submit" name="button">Submit</button>
     </form>
-  </body>
+  </div>
+
+
+</body>
+<footer>
+  Created by Fifi Law
+</footer>
 </html>
